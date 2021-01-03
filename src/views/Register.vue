@@ -9,7 +9,10 @@
                             >Need an account?</router-link
                         >
                     </p>
-                    VALIDATION ERRORS
+                    <MvValidationErrors
+                        v-if="validationErrors"
+                        :validationErrors="validationErrors"
+                    />
                     <form @submit.prevent="onSubmit">
                         <fieldset class="form-group">
                             <input
@@ -52,23 +55,32 @@
 </template>
 
 <script>
+import MvValidationErrors from '@/components/ValidationErrors'
+
 export default {
     name: 'MvRegister',
+    components: {
+        MvValidationErrors // регистрация другого компонента внутри
+    },
     data() {
         return {
-            email: '',
+            email: '', // регистрация полей форм
             password: '',
             username: ''
         }
     },
     computed: {
         isSubmitting() {
-            return this.$store.state.auth.isSubmitting
+            return this.$store.state.auth.isSubmitting // данные из state
+        },
+        validationErrors() {
+            // вовзращаем данные из state
+            return this.$store.state.auth.validationErrors
         }
     },
     methods: {
         onSubmit() {
-            this.$store
+            this.$store // запускаем экшены
                 .dispatch('register', {
                     email: this.email,
                     username: this.username,

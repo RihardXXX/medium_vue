@@ -1,4 +1,5 @@
 import authApi from '@/api/auth'
+import { setItem } from '@/helpers/persistanceStorage'
 
 const state = {
     isSubmitting: false,
@@ -34,6 +35,7 @@ const actions = {
                 .register(credentials)
                 .then(response => {
                     context.commit('registerSuccess', response.data.user) // отправляем данные текущего юзера в мутации
+                    setItem('accessToken', response.data.user.token) // сохраняем токен авторизации в локал сторидж
                     resolve(response.data.user)
                 })
                 .catch(result => {
@@ -43,10 +45,6 @@ const actions = {
                     )
                 })
         })
-
-        // setTimeout(() => {
-        //     context.commit('registerStart')
-        // }, 2000)
     }
 }
 

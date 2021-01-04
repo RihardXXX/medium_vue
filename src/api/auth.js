@@ -1,12 +1,18 @@
 import axios from '@/api/axios'
 
 const register = credentials => {
-    // credentials данные с формы
+    // запрос на регистрацию
     return axios.post('/users', { user: credentials })
 }
 
+const login = credentials => {
+    // запрос на вход
+    return axios.post('/users/login', { user: credentials })
+}
+
 export default {
-    register
+    register,
+    login
 }
 
 //-----------

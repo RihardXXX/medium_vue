@@ -84,7 +84,7 @@ const actions = {
                 .then(response => {
                     context.commit(
                         mutationTypes.loginSuccess,
-                        response.data.user.token
+                        response.data.user
                     )
                     setItem('accessToken', response.data.user.token) // сохраняем токен авторизации в локал сторидж
                     resolve(response.data.user)

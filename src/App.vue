@@ -1,6 +1,17 @@
 <template>
     <div>
-        <h1>Navbar</h1>
+        <MvTopbar />
         <router-view />
     </div>
 </template>
+
+<script>
+import MvTopbar from '@/components/Topbar'
+
+export default {
+    name: 'MvApp',
+    components: {
+        MvTopbar
+    }
+}
+</script>

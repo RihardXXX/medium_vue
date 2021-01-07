@@ -2,14 +2,16 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import auth from '@/store/modules/auth'
+import feed from '@/store/modules/feed'
 
-Vue.use(Vuex)
+Vue.use(Vuex) // коннектим вью к вьюикс
 
 export default new Vuex.Store({
     state: {},
     mutations: {},
     actions: {},
     modules: {
-        auth
+        auth,
+        feed
     }
 })

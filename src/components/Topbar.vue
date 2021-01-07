@@ -1,14 +1,14 @@
 <template>
     <nav class="navbar navbar-light">
         <div class="container">
-            <router-link class="navbar-brand" :to="{ name: 'home' }"
+            <router-link class="navbar-brand" :to="{ name: 'globalFeed' }"
                 >VUE MEDIUM</router-link
             >
             <ul class="nav navbar-nav pull-xs-right">
                 <li class="nav-item">
                     <router-link
                         class="nav-link"
-                        :to="{ name: 'home' }"
+                        :to="{ name: 'globalFeed' }"
                         exact
                         active-class="active"
                         >Home</router-link
@@ -82,19 +82,6 @@ export default {
             isLoggedIn: getterTypes.isLoggedIn,
             isAnonymous: getterTypes.isAnonymous
         })
-        // ...mapState({
-        //     // isLoggedIn: state => state.auth.isLoggedIn
-        //     // currentUser: state => state.auth.currentUser
-        // }),
-        // currentUser() {
-        //     return this.$store.getters[getterTypes.currentUser]
-        // },
-        // isLoggedIn() {
-        //     return this.$store.getters[getterTypes.isLoggedIn]
-        // },
-        // isAnonymous() {
-        //     return this.$store.getters[getterTypes.isAnonymous]
-        // }
     }
 }
 </script>

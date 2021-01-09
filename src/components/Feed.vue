@@ -49,7 +49,12 @@
                     TAG LIST
                 </router-link>
             </div>
-            PAGINATION
+            <MvPagination
+                :total="total"
+                :limit="limit"
+                :currentPage="currentPage"
+                :url="url"
+            />
         </div>
     </div>
 </template>
@@ -58,17 +63,28 @@
 import { mapState } from 'vuex'
 import { actionTypes } from '@/store/modules/feed'
 import MvSpinner from '@/components/Spinner'
+import MvPagination from '@/components/Pagination'
 
 export default {
     name: 'MvFeed',
     components: {
-        MvSpinner // регистрируем импортированный компонент
+        MvSpinner,
+        MvPagination // регистрируем импортированный компонент
     },
     props: {
         apiUrl: {
             // указываем тип пропсов и их обязательность
             type: String,
             required: true
+        }
+    },
+    data() {
+        // данные
+        return {
+            total: 500,
+            limit: 10,
+            currentPage: 5,
+            url: '/'
         }
     },
     computed: {

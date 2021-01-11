@@ -1,13 +1,13 @@
 <template>
     <div class="home-page">
-        BANNER
+        <MvBanner />
         <div class="container page">
             <div class="row">
                 <div class="col-md-9">
                     <MvFeed :apiUrl="apiUrl" />
                 </div>
                 <div class="col-md-3">
-                    <h3>POPULAR TAGS</h3>
+                    <MvTags />
                 </div>
             </div>
         </div>
@@ -16,11 +16,16 @@
 
 <script>
 import MvFeed from '@/components/Feed'
+import MvTags from '@/components/Tags'
+import MvBanner from '@/components/Banner'
 
 export default {
     name: 'MvGlobalFeed',
     components: {
-        MvFeed // регистрируем импортированный компонент
+        // регистрируем импортированный компонент
+        MvFeed,
+        MvTags,
+        MvBanner
     },
     data() {
         return {

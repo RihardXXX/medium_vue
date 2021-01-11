@@ -1,6 +1,7 @@
 import feedApi from '@/api/feed'
 
 const state = {
+    // состояние
     data: null,
     isLoading: false,
     errors: null

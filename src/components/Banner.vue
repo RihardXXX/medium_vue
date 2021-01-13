@@ -1,6 +1,7 @@
 <template>
-    <div class="m-banner">
+    <div class="banner">
         <img src="@/assets/medium.png" />
+        <h2>Medium</h2>
     </div>
 </template>
 
@@ -16,12 +17,13 @@ export default {
 </script>
 
 <style>
-.m-banner {
+.banner {
     text-align: center;
 }
 
-.m-banner img {
-    width: 150px;
-    height: 150px;
+.banner img {
+    width: 120px;
+    height: 120px;
+    border-radius: 5px;
 }
 </style>

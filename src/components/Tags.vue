@@ -1,11 +1,7 @@
 <template>
     <div class="sidebar">
-        <div v-if="isLoading">
-            <MvSpinner />
-        </div>
-        <div v-if="errors">
-            <h3>ERROR {{ errors }}</h3>
-        </div>
+        <MvSpinner v-if="isLoading" />
+        <MvError v-if="errors" :errorsMessage="'Tags Error'" />
 
         <div v-if="tags">
             <p>Popular Tags</p>
@@ -24,6 +20,7 @@
 import { mapState } from 'vuex'
 import { actionTypes } from '@/store/modules/tags'
 import MvSpinner from '@/components/Spinner'
+import MvError from '@/components/Error'
 
 export default {
     name: 'MvTags',
@@ -34,7 +31,8 @@ export default {
         }
     },
     components: {
-        MvSpinner
+        MvSpinner,
+        MvError
     },
     computed: {
         // получаем данные из стейта

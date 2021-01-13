@@ -1,12 +1,9 @@
 <template>
     <div>
-        <div v-if="isLoading">
-            <div class="center">
-                <MvSpinner />
-            </div>
+        <div class="center">
+            <MvSpinner v-if="isLoading" />
+            <MvError v-if="errors" :errorsMessage="'Feeds error'" />
         </div>
-
-        <div v-if="errors"><h3>Something bad happened</h3></div>
 
         <div v-if="feed">
             <div
@@ -63,6 +60,7 @@
 import { mapState } from 'vuex'
 import { actionTypes } from '@/store/modules/feed'
 import MvSpinner from '@/components/Spinner'
+import MvError from '@/components/Error'
 import MvPagination from '@/components/Pagination'
 import { limit } from '@/helpers/variables'
 import { stringify, parseUrl } from 'query-string'
@@ -70,8 +68,9 @@ import { stringify, parseUrl } from 'query-string'
 export default {
     name: 'MvFeed',
     components: {
-        MvSpinner,
-        MvPagination // регистрируем импортированный компонент
+        MvSpinner, // регистрируем импортированный компонент
+        MvPagination,
+        MvError
     },
     props: {
         apiUrl: {

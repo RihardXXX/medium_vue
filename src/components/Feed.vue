@@ -106,6 +106,10 @@ export default {
     watch: {
         currentPage() {
             this.fetchFeed()
+        },
+        apiUrl(newValue) {
+            this.apiUrl = newValue
+            this.fetchFeed()
         }
     },
     mounted() {

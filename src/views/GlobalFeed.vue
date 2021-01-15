@@ -4,6 +4,7 @@
         <div class="container page">
             <div class="row">
                 <div class="col-md-9">
+                    <MvFeedToggler />
                     <MvFeed :apiUrl="apiUrl" />
                 </div>
                 <div class="col-md-3">
@@ -18,6 +19,7 @@
 import MvFeed from '@/components/Feed'
 import MvTags from '@/components/Tags'
 import MvBanner from '@/components/Banner'
+import MvFeedToggler from '@/components/FeedToggler'
 
 export default {
     name: 'MvGlobalFeed',
@@ -25,7 +27,8 @@ export default {
         // регистрируем импортированный компонент
         MvFeed,
         MvTags,
-        MvBanner
+        MvBanner,
+        MvFeedToggler
     },
     data() {
         return {

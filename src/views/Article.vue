@@ -21,7 +21,7 @@
                         >
                         <span class="data">{{ article.createdAt }}</span>
                     </div>
-                    <span>
+                    <span v-if="isAuthor">
                         <router-link
                             class="btn btn-outline-secondary btn-sm"
                             :to="{
@@ -30,7 +30,10 @@
                             }"
                             ><i class="ion-edit">Edit Article</i></router-link
                         >
-                        <button class="btn btn-outline-danger btn-sm">
+                        <button
+                            class="btn btn-outline-danger btn-sm"
+                            @click="deleteArticle"
+                        >
                             <i class="ion-trash-a" />
                             Delete Article
                         </button>
@@ -55,8 +58,9 @@
 </template>
 
 <script>
-import { actionTypes } from '@/store/modules/article'
-import { mapState } from 'vuex'
+import { actionTypes as articleActionTypes } from '@/store/modules/article'
+import { mapState, mapGetters } from 'vuex'
+import { getterTypes as authGetterTypes } from '@/store/modules/auth'
 import MvSpinner from '@/components/Spinner'
 import MvError from '@/components/Error'
 
@@ -64,18 +68,39 @@ export default {
     name: 'MvArticle',
     mounted() {
         const slugArticle = this.$route.params.slug // получаем слаг с роута
-        this.$store.dispatch(actionTypes.getArticle, { slug: slugArticle }) // кладем его в экшн
+        this.$store.dispatch(articleActionTypes.getArticle, {
+            slug: slugArticle
+        }) // кладем его в экшн
     },
     computed: {
         ...mapState({
             isLoading: state => state.article.isLoading,
             errors: state => state.article.errors,
             article: state => state.article.data
-        })
+        }),
+        ...mapGetters({
+            currentUser: authGetterTypes.currentUser // получаем текущего пользователя
+        }),
+        isAuthor() {
+            // являемся ли мы автором поста
+            if (!this.currentUser || !this.article) {
+                return false // если нет тек пользователя или статьи
+            }
+            return this.currentUser.username === this.article.author.username // если имя текущего пользователя равна имени автора статьи, то мы являемся пользователем
+        }
     },
     components: {
         MvSpinner, // регистрируем импортированный компонент
         MvError
+    },
+    methods: {
+        deleteArticle() {
+            this.$store
+                .dispatch(articleActionTypes.deleteArticle, {
+                    slug: this.$route.params.slug
+                })
+                .then(() => this.$router.push({ name: 'globalFeed' })) // перекидываем пользователя на главную страницу
+        }
     }
 }
 </script>

@@ -50,7 +50,7 @@
                     <div>
                         <p>{{ article.body }}</p>
                     </div>
-                    TAGLIST
+                    <MvTaglist :tagList="article.tagList" />
                 </div>
             </div>
         </div>
@@ -63,6 +63,7 @@ import { mapState, mapGetters } from 'vuex'
 import { getterTypes as authGetterTypes } from '@/store/modules/auth'
 import MvSpinner from '@/components/Spinner'
 import MvError from '@/components/Error'
+import MvTaglist from '@/components/Taglist'
 
 export default {
     name: 'MvArticle',
@@ -91,7 +92,8 @@ export default {
     },
     components: {
         MvSpinner, // регистрируем импортированный компонент
-        MvError
+        MvError,
+        MvTaglist
     },
     methods: {
         deleteArticle() {

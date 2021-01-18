@@ -43,7 +43,7 @@
                     <h1>{{ article.title }}</h1>
                     <p>{{ article.description }}</p>
                     <span>Read more...</span>
-                    TAG LIST
+                    <MvTaglist :tagList="article.tagList" />
                 </router-link>
             </div>
             <MvPagination
@@ -64,13 +64,15 @@ import MvError from '@/components/Error'
 import MvPagination from '@/components/Pagination'
 import { limit } from '@/helpers/variables'
 import { stringify, parseUrl } from 'query-string'
+import MvTaglist from '@/components/Taglist'
 
 export default {
     name: 'MvFeed',
     components: {
         MvSpinner, // регистрируем импортированный компонент
         MvPagination,
-        MvError
+        MvError,
+        MvTaglist
     },
     props: {
         apiUrl: {

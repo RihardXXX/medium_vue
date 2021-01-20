@@ -3,7 +3,10 @@
         <div class="container page">
             <div class="row">
                 <div class="col-md-10 offset-md-1 col-xs-12">
-                    <MvValidationErrors v-if="errors" />
+                    <MvValidationErrors
+                        v-if="errors"
+                        :validationErrors="errors"
+                    />
                     <form @submit.prevent="onSubmit">
                         <fieldset>
                             <fieldset class="form-group">
@@ -91,11 +94,12 @@ export default {
     },
     methods: {
         onSubmit() {
+            // собираем данные с форм и отправляем и вызываем их у метода родителя
             const form = {
                 title: this.title,
                 description: this.description,
                 body: this.body,
-                tagList: this.tagList
+                tagList: this.tagList.split(' ') // строку в массив
             }
             this.$emit('articleSubmit', form)
         }

@@ -1,8 +1,8 @@
 import axios from '@/api/axios'
 
-const getArticle = (
-    slug // получаем статью
-) => axios.get(`/articles/${slug}`).then(response => response.data.article)
+// получаем статью
+const getArticle = slug =>
+    axios.get(`/articles/${slug}`).then(response => response.data.article)
 
 const deleteArticle = slug => axios.delete(`/articles/${slug}`) // удалем стать с соответствующим слагом
 
@@ -12,8 +12,15 @@ const createArticle = articleInput =>
         .post('/articles', { article: articleInput })
         .then(response => response.data.article)
 
+// редактирование статьи
+const updateArticle = (slug, articleInput) =>
+    axios
+        .put(`/articles/${slug}`, articleInput)
+        .then(response => response.data.article)
+
 export default {
     getArticle,
     deleteArticle,
-    createArticle
+    createArticle,
+    updateArticle
 }

@@ -14,10 +14,17 @@ const getCurrentUser = () => {
     return axios.get('/user')
 }
 
+// редактирование данных пользователя
+const updateCurrentUser = currentUserInput =>
+    axios
+        .put('/user', { user: currentUserInput })
+        .then(response => response.data.user)
+
 export default {
     register,
     login,
-    getCurrentUser
+    getCurrentUser,
+    updateCurrentUser
 }
 
 //-----------

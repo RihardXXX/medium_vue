@@ -7,6 +7,7 @@ import tags from '@/store/modules/tags'
 import article from '@/store/modules/article'
 import createArticle from '@/store/modules/createArticle'
 import editArticle from '@/store/modules/editArticle'
+import setting from '@/store/modules/setting'
 
 Vue.use(Vuex) // коннектим вью к вьюикс
 
@@ -20,6 +21,7 @@ export default new Vuex.Store({
         tags,
         article,
         createArticle,
-        editArticle
+        editArticle,
+        setting
     }
 })

@@ -33,7 +33,11 @@
                         <span class="date">{{ article.createdAt }}</span>
                     </div>
                     <div class="pull-xs-right">
-                        ADD TO FAVORITES
+                        <MvAddToFavorites
+                            :isFavorited="article.favorited"
+                            :articleSlug="article.slug"
+                            :favoritesCount="article.favoritesCount"
+                        />
                     </div>
                 </div>
                 <router-link
@@ -65,6 +69,7 @@ import MvPagination from '@/components/Pagination'
 import { limit } from '@/helpers/variables'
 import { stringify, parseUrl } from 'query-string'
 import MvTaglist from '@/components/Taglist'
+import MvAddToFavorites from '@/components/AddToFavorites'
 
 export default {
     name: 'MvFeed',
@@ -72,7 +77,8 @@ export default {
         MvSpinner, // регистрируем импортированный компонент
         MvPagination,
         MvError,
-        MvTaglist
+        MvTaglist,
+        MvAddToFavorites
     },
     props: {
         apiUrl: {
